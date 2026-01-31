@@ -1,0 +1,19 @@
+To add or edit news, simply copy one of the news article blocks above and paste it with new content in news.html
+
+Format:
+
+
+            <!-- Article ?? -->
+            <div class="news-card animate-fade-in delay-400">
+                <div class="flex items-center mb-4">
+                    <div class="news-date">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        Date
+                    </div>
+                    <span class="ml-4 px-3 py-1 rounded-full text-sm bg-purple-900/30 text-purple-400">TITLE</span>
+                </div>
+                <h3 class="news-title">title</h3>
+                <p class="news-content">disc</p>
+            </div>
+        </div>
+    </main>
