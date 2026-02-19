@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColdFOX - Keyboard Shortcuts</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Topbar Styles */
+        .topbar {
+            background: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s !important;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            color: white !important;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .note {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .note kbd {
+            background: #1976d2;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .shortcuts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .category {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category h2 {
+            color: #667eea;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .shortcut-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .shortcut-item:last-child {
+            border-bottom: none;
+        }
+        
+        .action {
+            flex: 1;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .keys {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: #f8f9fa;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+        
+        .alternative {
+            color: #999;
+            font-size: 12px;
+            font-style: italic;
+        }
+        
+        kbd {
+            background: #333;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+        
+        .mod-note {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="logo">
+            <span>❄️ ColdFOX</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shortcuts.html">Shortcuts</a>
+            <a href="tour.html">Tour</a>
+            <a href="commands.html">Commands</a>
+            <a href="bangs.html">Bangs</a>
+            <a href="https://github.com/itsbrodev/coldfox-reborn/releases" class="download-btn" target="_blank">⬇️ Download</a>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="container">
+            <div class="header">
+                <h1>⌨️ ColdFOX Keyboard Shortcuts</h1>
+            </div>
+            
+            <div class="note">
+                <strong>Note:</strong> <kbd>mod</kbd> is the <kbd>⌘</kbd> key on Mac, or the <kbd>Ctrl</kbd> key on Linux and Windows. 
+                Many of these shortcuts can be modified from the ColdFOX preferences.
+            </div>
+            
+            <div class="shortcuts-grid">
+                <div class="category">
+                    <h2>Navigation</h2>
+                    <div class="shortcut-item">
+                        <span class="action">Highlight location bar</span>
+                        <span class="keys">mod l</span>
+                        <span class="alternative">mod k</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Autofill "www." & ".com"</span>
+                        <span class="keys">mod enter</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Back</span>
+                        <span class="keys">mod ←</span>
+                        <span class="alternative">swipe right</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Forward</span>
+                        <span class="keys">mod →</span>
+                        <span class="alternative">swipe left</span>
+                    </div>
+                </div>
+                
+                <div class="category">
+                    <h2>Tabs</h2>
+                    <div class="shortcut-item">
+                        <span class="action">New tab</span>
+                        <span class="keys">mod t</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">New private tab</span>
+                        <span class="keys">mod ⇧ p</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Reload tab</span>
+                        <span class="keys">mod r</span>
+                        <span class="alternative">quickly twice: reloads all</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">View next tab (right)</span>
+                        <span class="keys">ctl tab</span>
+                        <span class="alternative">ctrl ⇧ PgDn</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">View next tab (left)</span>
+                        <span class="keys">ctl ⇧ tab</span>
+                        <span class="alternative">ctrl ⇧ PgUp</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">View nth tab to right</span>
+                        <span class="keys">mod n</span>
+                        <span class="alternative">e.g. mod 2</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">View nth tab to left</span>
+                        <span class="keys">mod ⇧ n</span>
+                        <span class="alternative">e.g. mod ⇧ 2</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Open in new tab (in focus)</span>
+                        <span class="keys">⇧ click</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Open in new tab (background)</span>
+                        <span class="keys">mod click</span>
+                        <span class="alternative">middle click</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Close tab</span>
+                        <span class="keys">mod w</span>
+                        <span class="alternative">swipe up</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Restore closed tab</span>
+                        <span class="keys">mod ⇧ t</span>
+                    </div>
+                </div>
+                
+                <div class="category">
+                    <h2>Tasks</h2>
+                    <div class="shortcut-item">
+                        <span class="action">New task</span>
+                        <span class="keys">mod n</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Clear task</span>
+                        <span class="keys">mod ⇧ n</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Open tasks overlay</span>
+                        <span class="keys">mod ⇧ e</span>
+                        <span class="alternative">swipe down</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Select tab from overlay</span>
+                        <span class="keys">tab</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Switch to nth task</span>
+                        <span class="keys">mod ⇧ alt n</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">View next task</span>
+                        <span class="keys">mod ]</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">View previous task</span>
+                        <span class="keys">mod [</span>
+                    </div>
+                </div>
+                
+                <div class="category">
+                    <h2>Windows</h2>
+                    <div class="shortcut-item">
+                        <span class="action">New window</span>
+                        <span class="keys">shift mod n</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Close all tabs in window</span>
+                        <span class="keys">alt mod shift n</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Close window</span>
+                        <span class="keys">shift mod w</span>
+                    </div>
+                </div>
+                
+                <div class="category">
+                    <h2>Other</h2>
+                    <div class="shortcut-item">
+                        <span class="action">Bookmark</span>
+                        <span class="keys">mod d</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">History</span>
+                        <span class="keys">mod shift h</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Search in page</span>
+                        <span class="keys">mod f</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="action">Zoom in/out</span>
+                        <span class="keys">mod scroll</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        © 2026 The ItsBro Dev Studios. All rights reserved. | <a href="https://github.com/itsbrodev/coldfox-reborn">GitHub</a>
+    </div>
+</body>
+</html>

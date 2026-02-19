@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColdFOX - Command Line Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #1a1a1a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Topbar Styles */
+        .topbar {
+            background: #2d2d2d;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s !important;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            color: white !important;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 42px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #999;
+        }
+        
+        .terminal {
+            background: #2d2d2d;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        .terminal-header {
+            background: #1a1a1a;
+            padding: 15px 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        
+        .terminal-title {
+            color: #666;
+            font-size: 14px;
+            margin-left: auto;
+        }
+        
+        .terminal-body {
+            padding: 30px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            color: #fff;
+        }
+        
+        .command-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #444;
+        }
+        
+        .command-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .command {
+            color: #667eea;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .command-description {
+            color: #999;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+        
+        .command-example {
+            background: #1a1a1a;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            color: #27c93f;
+            font-size: 13px;
+        }
+        
+        .section-title {
+            color: white;
+            font-size: 24px;
+            margin: 40px 0 20px;
+        }
+        
+        .info-box {
+            background: #2d2d2d;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .info-box h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .info-box p {
+            color: #999;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="logo">
+            <span>❄️ ColdFOX</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shortcuts.html">Shortcuts</a>
+            <a href="tour.html">Tour</a>
+            <a href="commands.html">Commands</a>
+            <a href="bangs.html">Bangs</a>
+            <a href="https://github.com/itsbrodev/coldfox-reborn/releases" class="download-btn" target="_blank">⬇️ Download</a>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="container">
+            <div class="header">
+                <h1>⌨️ Command Line Tools</h1>
+                <div class="subtitle">Powerful commands for power users</div>
+            </div>
+            
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                    <div class="terminal-title">coldfox --help</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="command-item">
+                        <div class="command">$ coldfox &lt;url&gt;</div>
+                        <div class="command-description">Open a URL or local HTML file</div>
+                        <div class="command-example">Example: coldfox https://duckduckgo.com</div>
+                    </div>
+                    
+                    <div class="command-item">
+                        <div class="command">$ coldfox -s &lt;search&gt;</div>
+                        <div class="command-description">Start a web search with the given term</div>
+                        <div class="command-example">Example: coldfox -s "weather in London"</div>
+                    </div>
+                    
+                    <div class="command-item">
+                        <div class="command">$ coldfox -v, --version</div>
+                        <div class="command-description">Display browser version</div>
+                        <div class="command-example">Example: coldfox --version → ColdFOX 2.5.0</div>
+                    </div>
+                    
+                    <div class="command-item">
+                        <div class="command">$ coldfox --development-mode</div>
+                        <div class="command-description">Launch in development mode (enables developer options and saves data in an isolated coldfox-development folder)</div>
+                        <div class="command-example">Example: coldfox --development-mode</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <h3>🔧 Focus Mode</h3>
+                <p>Focus mode helps keep you from getting distracted by disabling the ability to open new tabs. To turn on Focus Mode, open the application menu, and go to "View > Focus Mode". To leave focus mode, select the menu item a second time.</p>
+            </div>
+            
+            <h2 class="section-title">⚡ Advanced Features</h2>
+            
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                    <div class="terminal-title">developer tools</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="command-item">
+                        <div class="command">Development Mode Features:</div>
+                        <div class="command-description">• Chrome DevTools integration</div>
+                        <div class="command-description">• Isolated user data folder</div>
+                        <div class="command-description">• Extended logging</div>
+                        <div class="command-description">• Debug menu items</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        © 2026 The ItsBro Dev Studios. All rights reserved. | <a href="https://github.com/itsbrodev/coldfox-reborn">GitHub</a>
+    </div>
+</body>
+</html>
